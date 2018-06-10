@@ -8,33 +8,32 @@
     <link rel="icon" href="./images/favicon.ico">
     <link rel="stylesheet" href="./lib/mui/css/mui.css">
     <link rel="stylesheet" href="./lib/fontAwesome/css/font-awesome.css">
-    <link rel="stylesheet/less" href="./less/category.less">
+    <link rel="stylesheet/less" href="./less/search.less">
     <script src="./lib/less/less.js"></script>
 </head>
 <body>
 
     <header class="header">
         <a href="#" class="fa fa-arrow-left"></a>
-        <form>  
-            <input type="search" placeholder="请输入品牌">
-        </form>
-        
-        <a href="./search.html" class="fa fa-search"></a>
+        <h4>搜索中心</h4>
     </header>
 
     <div class="main">
-        <div class="main-left">
-            <ul>
-                
-            </ul>
+        <div class="search-form">
+            <form action="#">
+                <input type="text" placeholder="请输入商品" class="input-search">
+                <a href="productlist.html" class="mui-btn mui-btn-primary btn-search">搜索</a>
+            </form>
         </div>
-        <div class="main-right">
-            <div class="mui-scroll-wrapper">
-                <div class="mui-scroll">
-                    <div class="mui-row">
-                        
-                    </div>
-                </div>
+
+        <div class="search-history">
+            <div class="title mui-clearfix">
+                <span class="mui-pull-left">搜索历史</span>
+                <a href="#" class="mui-pull-right fa fa-trash btn-clear">清空记录</a>
+            </div>
+
+            <div class="content">
+                
             </div>
         </div>
     </div>
@@ -66,27 +65,32 @@
         </div>
     </footer>
 
-    <script id="getmainleftTmp" type="text/html">
-        {{each rows as value i}}
-            <li class="{{i == 0 ? 'active' : ''}}">
-                <a href="#" data-id="{{i}}">{{value.categoryName}}</a>
+    <!-- {{each}}
+            <li>
+                <a href="#">{{$value.index}}</a>
+                <span class="fa fa-times btn-delete"></span>
             </li>
-        {{/each}}
+        {{/each}} -->
+    <script id="searchListtmp" type="text/html">
+        {{if rows.length}}
+            <ul>
+            {{each rows as value i}}
+                <li>
+                    <a href="productlist.html">
+                        <span>{{value.search}}</span>
+                        <span class="fa fa-times btn-delete" data-id="{{value.id}}"></span>
+                    </a>
+                </li>
+            {{/each}}
+            </ul>
+        {{/if}}
     </script>
-    <script id="getmainrightTmp" type="text/html">
-        {{each rows as value i}}
-            <div class="mui-col-xs-4">
-                <a href="#">
-                    <img src="{{value.brandLogo}}" alt="">
-                    <p>{{value.brandName}}</p>  
-                </a>
-            </div>
-        {{/each}}
-    </script>
+
+  
 
     <script src="./lib/mui/js/mui.js"></script>
     <script src="./lib/zepto/zepto.min.js"></script>
     <script src="./lib/artTemplate/template.js"></script>
-    <script src="./js/category.js"></script>
+    <script src="./js/search.js"></script>
 </body>
 </html>

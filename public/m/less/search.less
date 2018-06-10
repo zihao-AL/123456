@@ -1,0 +1,107 @@
+@import "./bass.less";
+
+html,body {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+
+.header {
+    width: 100%;
+    height: 45px;
+    background-color: @mainColor;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+
+    .fa-arrow-left {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        color: #fff;
+        font-size: 20px;
+    }
+
+    h4 {
+        text-align: center;
+        line-height: 45px;
+        margin: 0;
+        padding: 0;
+        color: white;
+        font-weight: normal;
+    }
+ 
+}
+
+.main {
+    padding-top: 45px;
+    padding-bottom: 45px;
+
+    .search-form{	
+        >form{
+            padding: 10px;
+            position: relative;
+            padding-right: 64px;
+            >input{
+                height: 33px;
+                font-size: 12px;
+                border-color: @mainColor;
+                /* 把输入框右上角右下角圆角去掉 */
+                border-radius: 3px 0px 0px 3px;
+                margin-bottom: 0;
+            }
+            .btn-search{
+                position: absolute;
+                right:11px;
+                top: 10px;
+                background-color: @mainColor;
+                border-color: @mainColor;
+                /* 把按钮左上角左下角的圆角去掉 */
+                border-radius: 0px 3px 3px 0px;
+            }
+        }
+    }
+
+    .search-history {
+        .title {
+            padding: 6px 15px;
+
+            span,
+            .btn-clear {
+                color: #666;
+                font-size: 12px;
+            }
+        }
+
+        .content {
+            padding: 0 10px;
+            ul {
+                border: 1px solid #ccc;
+                li {
+                    height: 26px;
+                    padding: 0 10px;
+                    position: relative;
+                    border-bottom: 1px solid #ccc;
+
+                    &:last-child {
+                        border: 0;  
+                    }
+                    a {
+                        color: #666;
+                        font-size: 14px;
+                        line-height: 26px;
+                    }
+                    .btn-delete {
+                        position: absolute;
+                        right: 10px;
+                        top: 5px;
+                        font-size: 12px;
+                        font-weight: normal;
+                        color: #666;
+                    }
+                }
+            }
+        }
+    }
+}
