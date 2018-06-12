@@ -2,8 +2,20 @@ var letao;
 $(function() {
     letao = new Letao();
     letao.initPullRefresh();
-})
+    letao.searchProductList();
+    letao.productSort();
+    search = getQueryString('search');
+    console.log(search);
+    letao.getProdcutList({
+        proName: search
+    }, function(backData) {
+        var data = template("productListTmp", backData);
+        $(".content .mui-row").html(data);
+    })
+});
 
+var search;
+var page = 1;
 var Letao = function() {
 
 }
@@ -14,31 +26,133 @@ Letao.prototype = {
             pullRefresh : {
               container:"#refreshContainer",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
               down : {
-                height:50,//可选,默认50.触发下拉刷新拖动距离,
-                auto: false,//可选,默认false.首次加载自动下拉刷新一次
-                contentdown : "下拉可以刷新",//可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
-                contentover : "释放立即刷新",//可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
-                contentrefresh : "正在刷新...",//可选，正在刷新状态时，下拉刷新控件上显示的标题内容
+                
                 callback :function() {
                     setTimeout(function() {
-                        mui('.mui-scroll-wrapper').pullRefresh().endPulldownToRefresh();
+
+                        letao.getProdcutList({
+                            proName: search
+                        }, function(backData) {
+
+                            var data = template("productListTmp", backData);
+                            $(".content .mui-row").html(data);
+
+                            mui('.mui-scroll-wrapper').pullRefresh().endPulldownToRefresh();
+
+                            mui('.mui-scroll-wrapper').pullRefresh().refresh(true);
+
+                            page = 1;
+                        })
                     },1500)
                 }
               },
               up : {
-                height: 50,//可选.默认50.触发上拉加载拖动距离
-                auto: false,//可选,默认false.自动上拉加载一次
-                contentrefresh : "正在加载...",//可选，正在加载状态时，上拉加载控件上显示的标题内容
-                contentnomore:'没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
+                
                 callback : function() {
                     setTimeout(function() {
-                        mui('.mui-scroll-wrapper').pullRefresh().endPullupToRefresh();
-                        mui('#pullup-container').pullRefresh().refresh(true);
+
+                        letao.getProdcutList({
+                            proName: search,
+                            page: ++page
+                        }, function(backData) {
+
+                            var data = template("productListTmp", backData);
+                            $(".content .mui-row").append(data);
+
+                            if(backData.data.length > 0) {
+                                mui('.mui-scroll-wrapper').pullRefresh().endPullupToRefresh();
+                            }else {
+                                mui('.mui-scroll-wrapper').pullRefresh().endPullupToRefresh(true);
+                            }
+                        })
+
                     },1500);
                 } 
                     
               }
             }
-          });
+        });
+    },
+
+    searchProductList: function() {
+        $(".main .btn-search").on('tap',function() {
+            
+            search = $(".input-search").val();
+            
+            letao.getProdcutList({
+                proName: search
+            },function(backData) {
+
+                var data = template("productListTmp", backData);
+                $(".content .mui-row").html(data);
+            });
+        })
+    },
+
+    getProdcutList: function(obj, fn) {
+
+        $.ajax({
+            url: "/product/queryProduct",
+            data: {
+                page: obj.page || 1,
+                pageSize: obj.pageSize || 2,
+                proName: obj.proName,
+                price: obj.price,
+                num: obj.num
+            },
+            
+            success: function(backData) {
+
+                if(fn) {
+                    fn(backData);
+                }
+            }
+        })
+    },
+
+    productSort: function() {
+        $('.title .mui-row').on('tap','a', function() {
+            var sortType = $(this).data('sort-type');
+            // console.log(sortType);
+            var sort = $(this).data('sort');
+            console.log(sort);
+            if(sort == 1) {
+                sort = 2;
+            }else {
+                sort = 1;
+            }
+            $(this).attr("data-sort", sort);
+            if(sortType == "price") {
+                letao.getProdcutList({
+                    proName: search,
+                    price: sort
+                }, function(backData) {
+
+                    var data = template("productListTmp", backData);
+                    $(".content .mui-row").html(data);
+                })
+            }else if(sortType == "num") {
+                letao.getProdcutList({
+                    proName: search,
+                    num: sort
+                }, function(backData) {
+
+                    var data = template("productListTmp", backData);
+                    $(".content .mui-row").html(data);
+                })
+            }
+        })
+    }
+
+}
+
+//获取url地址栏的参数的函数 网上找的  name就是url参数名
+function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) {
+        return decodeURI(r[2]);
+    } else {
+        return null;
     }
 }

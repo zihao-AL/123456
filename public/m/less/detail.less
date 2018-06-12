@@ -1,0 +1,138 @@
+@import "bass.less";
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+
+.header {
+    width: 100%;
+    height: 45px;
+    background-color: @mainColor;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+
+    .fa-arrow-left {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        color: #fff;
+        font-size: 20px;
+    }
+
+    h4 {
+        text-align: center;
+        line-height: 45px;
+        margin: 0;
+        padding: 0;
+        color: white;
+        font-weight: normal;
+    }
+
+    .fa-home {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        color: white;
+        font-size: 25px;
+    }
+ 
+}
+
+.main {
+
+    .content {
+
+        >div {
+            border-bottom: 1px solid #ccc;
+        }
+
+        .describe {
+            padding: 5px 0;
+            p {
+                color: #333;
+                font-size: 18px;
+                line-height: 25px;
+            }
+        }
+
+        .price {
+            height: 50px;
+            line-height: 50px;
+            .new-price {
+                color: #f10215;
+                font-size: 25px;
+                font-weight: 700;
+                padding: 0px 15px;
+            }
+            .old-price {
+                color: #999;
+                font-size: 14px;
+            }
+        }
+
+        .size {
+            // height: 50px;
+
+            span {
+                display: inline-block;
+                width: 25px;
+                height: 25px;
+                border: 1px solid #999;
+                line-height: 25px;
+                text-align: center;
+                margin: 5px 3px;
+                font-size: 14px;
+
+                &.active {
+                    background-color: tomato;
+                }
+            }
+        }
+
+        .num {
+            height: 60px;
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+.footer {
+    background-color: #ccc;
+
+    .fa-shopping-cart {
+        position: absolute;
+        left: 15px;
+        top: 10px;
+        font-size: 22px;
+        color: #333;
+    }
+
+    .btn-options {
+        padding: 5px 10px 5px 60px;
+
+        .add-cart {
+            float: left;
+            width: 50%;
+            padding-right: 5px;
+
+            a {
+                display: block;
+            }
+
+        }
+        .buy {
+            width: 50%;
+            float: right;
+            padding-left: 5px;
+
+            a {
+                display: block;
+            }
+        }
+    }
+}

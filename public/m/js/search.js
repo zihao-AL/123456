@@ -21,6 +21,7 @@ Letao.prototype = {
         $('.btn-search').click(function() {
             // 拿到搜索框里面的文字
             var search = $('.input-search').val();
+            console.log(search);
             // 如果没有输入文字 就不执行后面的代码
             if(!search.trim()) {
                 alert('请输入商品...');
@@ -59,6 +60,8 @@ Letao.prototype = {
             window.localStorage.setItem("searchData",JSON.stringify(arr));
             // 查询后刷新页面
             letao.queryHistory();
+
+            window.location.href = 'productlist.html?search='+search;
         })
 
     },
@@ -80,7 +83,6 @@ Letao.prototype = {
     },
 
     deleteHistory: function() {
-
         
         $('.content').on('click','.btn-delete',function (e) {
             e.preventDefault();
@@ -106,7 +108,7 @@ Letao.prototype = {
             // 把删除后的数组重新存储到本地存储
             window.localStorage.setItem("searchData", JSON.stringify(arr));
             // 刷新页面
-            letao.queryHistory(); 
+            letao.queryHistory();
         })
     },
 
