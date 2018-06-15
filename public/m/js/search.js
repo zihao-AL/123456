@@ -85,7 +85,7 @@ Letao.prototype = {
     deleteHistory: function() {
         
         $('.content').on('click','.btn-delete',function (e) {
-            e.preventDefault();
+            //e.preventDefault();
             // 得到当前点击的id
             var id = $(this).data("id");
             // 获取当前的数据

@@ -1,4 +1,5 @@
 var letao;
+var id;
 $(function() {
     // 声明一个函数
     letao = new Letao();
@@ -7,7 +8,7 @@ $(function() {
     // 点击添加类名的方法
     letao.selectSize();
     // 获取页面传过来的值
-    var id = getQueryString("id");
+    id = getQueryString("id");
     letao.getProductDetail(id);
     // 加入购物车
     letao.addCart();
@@ -91,16 +92,32 @@ Letao.prototype = {
                 mui.toast('请选择数量',{ duration:'short', type:'div' }); 
                 return;
             }
-            // 提示框  0 代表点击是 1 代表点击否
-            mui.confirm("添加成功,是否去购物车查看?","温馨提示",['是','否'], function(e) {
 
-                if(e.index == 0) {
-                    console.log('1');
-                    // window.location.href = "";
-                }else if(e.index == 1) {
-                    console.log('请继续购物');
+            $.ajax({
+                url: "/cart/addCart",
+                type: "post",
+                data: {
+                    productId: id,
+                    num: num,
+                    size: dataSize
+                },
+                success: function(backData) {
+                    if(backData.success) {
+                        mui.confirm("添加成功,是否去购物车查看?","温馨提示",['是','否'], function(e) {
+                            if(e.index == 0) {
+                                window.location.href = "cart.html";
+                            }else if(e.index == 1) {
+                                console.log('请继续购物');
+                            }
+                        })
+
+                    }else {
+                        window.location.href = "login.html";
+                    }
                 }
+
             })
+            // 提示框  0 代表点击是 1 代表点击否
         })
     }
 

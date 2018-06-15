@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>后台首页</title>
+	<link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="./lib/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet/less" href="./less/index.less">
+	<script src="./lib/less/less.js"></script>
+</head>
+<body>
+    <main class="main" id="main">
+        <div class="row">
+            <div class="aside col-sm-2 col-lg-2">
+                <div class="user-img">
+                    <img src="./images/my_logo.jpg" class="my-logo" alt="">
+                    <h4>张学友</h4>
+                </div>
+                <div class="classify">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="index.html">用户管理</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#collapseOne" data-toggle="collapse">分类管理</a>
+                            <ul class="list-group classify2 panel-collapse collapse out" id="collapseOne">
+                                <li class="list-group-item">
+                                    <a href="categoryFirst.html">一级分类</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="categorySecond.html">二级分类</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">商品管理</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content col-sm-10 col-lg-10">
+                <div class="header clearfix">
+                    <div class="pull-left">
+                        <a href="#">
+                            <i class="fa fa-navicon"></i>
+                        </a>
+                    </div>
+                    <div class="pull-right">
+                        <a href="#"><i class="fa fa-sign-out"></i>退出</a>
+                    </div>
+                </div>
+                <div class="profile">
+                    <div class="paging">
+
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>用户名</th>
+                                <th>电话</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+
+    <script type="text/html" id="queryUserTmp">
+        {{each rows as value i}}
+            <tr>
+                <td scope="row"><input type="checkbox"></td>
+                <td>{{value.username}}</td>
+                <td>{{value.mobile}}</td>
+                {{if value.isDelete == 1}}
+                    <td>已启用</td>
+                    <td><button type="button" data-id="{{value.id}}" data-delete="{{value.isDelete}}" class="btn btn-danger btn-update">禁用</button></td>
+                {{else}}
+                    <td>已禁用</td>
+                    <td><button type="button" data-id="{{value.id}}" data-delete="{{value.isDelete}}" class="btn btn-success btn-update">启用</button></td>
+                {{/if}}
+            </tr>
+        {{/each}}
+    </script>
+
+    <script type="text/html" id="pagingTmp">
+
+        <div class="left">
+            显示第 {{page}} 页的 {{pageTotal}} 条记录，总共 {{total}} 条记录
+        </div>
+        <nav class="right">
+            <ul class="pagination">
+                <li> 
+                    <a href="#" class="prev" data-page="{{page > 1 ? --page : 1}}">
+                        <span>&laquo;</span>
+                    </a>
+                </li>
+                {{each pageCount as value i}}
+                    <li><a href="#" data-page="{{value}}">{{value}}</a></li>
+                {{/each}}
+                <li>
+                    <a href="#" class="next"  data-page="{{page >= pageCount.length ? pageCount.length : ++page}}">
+                        <span>&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    
+    </script>
+
+	<script src="./lib/jquery/jquery.js"></script>
+	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="./lib/artTemplate/template.js"></script>
+	<script src="./js/index.js"></script>
+</body>
+</html>

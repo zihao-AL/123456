@@ -29,18 +29,18 @@ Letao.prototype = {
                 
                 callback :function() {
                     setTimeout(function() {
-
+                        // 调用函数, 渲染页面
                         letao.getProdcutList({
-                            proName: search
+                            proName: search // 传入当前输入框的文字, 继续显示相同的数据
                         }, function(backData) {
 
                             var data = template("productListTmp", backData);
                             $(".content .mui-row").html(data);
-
+                            // 结束刷新
                             mui('.mui-scroll-wrapper').pullRefresh().endPulldownToRefresh();
-
+                            // 初始化下拉加载的函数
                             mui('.mui-scroll-wrapper').pullRefresh().refresh(true);
-
+                            // 页码重新变回1
                             page = 1;
                         })
                     },1500)
@@ -50,18 +50,20 @@ Letao.prototype = {
                 
                 callback : function() {
                     setTimeout(function() {
-
+                         // 调用函数, 渲染页面
                         letao.getProdcutList({
-                            proName: search,
-                            page: ++page
+                            proName: search, // 传入当前输入框的文字, 继续显示相同的数据
+                            page: ++page  // 显示不同页码的数据
                         }, function(backData) {
 
                             var data = template("productListTmp", backData);
                             $(".content .mui-row").append(data);
 
                             if(backData.data.length > 0) {
+                                // 还有数据, 继续刷新数据
                                 mui('.mui-scroll-wrapper').pullRefresh().endPullupToRefresh();
                             }else {
+                                // 没有了, 显示没有数据了
                                 mui('.mui-scroll-wrapper').pullRefresh().endPullupToRefresh(true);
                             }
                         })
@@ -76,13 +78,13 @@ Letao.prototype = {
 
     searchProductList: function() {
         $(".main .btn-search").on('tap',function() {
-            
+            // 获取搜索框的val值
             search = $(".input-search").val();
-            
+            // 调用函数
             letao.getProdcutList({
-                proName: search
+                proName: search // 传入搜索框的值
             },function(backData) {
-
+                // 渲染页面
                 var data = template("productListTmp", backData);
                 $(".content .mui-row").html(data);
             });
@@ -102,7 +104,7 @@ Letao.prototype = {
             },
             
             success: function(backData) {
-
+                // 如果传入了回调函数, 才会调用
                 if(fn) {
                     fn(backData);
                 }
@@ -111,32 +113,36 @@ Letao.prototype = {
     },
 
     productSort: function() {
+        // 商品页面 "价格和销量的排序"
         $('.title .mui-row').on('tap','a', function() {
+            // 获取之定义属性, 得到不同的type值, 在下面进行判断
             var sortType = $(this).data('sort-type');
-            // console.log(sortType);
+            // 获取之定义属性, 得到不同的sort值, 在下面进行判断
             var sort = $(this).data('sort');
-            console.log(sort);
+            // 判断
             if(sort == 1) {
                 sort = 2;
             }else {
                 sort = 1;
             }
+            // 重新给这个属性赋值
             $(this).attr("data-sort", sort);
+            // 如果是价格
             if(sortType == "price") {
                 letao.getProdcutList({
                     proName: search,
-                    price: sort
+                    price: sort // 接口文档的排序
                 }, function(backData) {
 
                     var data = template("productListTmp", backData);
                     $(".content .mui-row").html(data);
                 })
-            }else if(sortType == "num") {
+            }else if(sortType == "num") { // 如果是销量
                 letao.getProdcutList({
                     proName: search,
-                    num: sort
+                    num: sort // 接口文档的排序
                 }, function(backData) {
-
+                    
                     var data = template("productListTmp", backData);
                     $(".content .mui-row").html(data);
                 })

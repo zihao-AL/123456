@@ -1,0 +1,48 @@
+@import "bass.less";
+
+#main {
+    position: relative;
+    
+    form {
+        padding: 10px;
+
+        &::after {
+            background-color: #fff;
+        }
+
+        >div {
+            margin-bottom: 10px;
+
+            &::after {
+                background-color: #fff;
+            }
+        }
+        .mobile,.username,.password1,.password2,.vcode {
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .vcode {
+            width: 220px;
+        }
+        .get-Vcode {
+            width: 120px;
+            position: absolute;
+            right: 0;
+            top: 2px;
+        }
+
+        .btn-register {
+            margin-top: 20px;
+            width: 100%;
+        }
+    }
+
+    .btn-login {
+        position: absolute;
+        bottom: 20px;
+        right: 10px;
+        font-size: 12px;
+        color: #999;
+    }
+}

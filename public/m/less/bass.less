@@ -24,6 +24,53 @@ ol {
     list-style: none;
 }
 
+html,body {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+
+.header {
+    width: 100%;
+    height: 45px;
+    background-color: @mainColor;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+
+    .fa-arrow-left {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        color: #fff;
+        font-size: 20px;
+    }
+
+    h4 {
+        text-align: center;
+        line-height: 45px;
+        margin: 0;
+        padding: 0;
+        color: white;
+        font-weight: normal;
+    }
+
+    .fa-refresh {
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        color: #fff;
+        font-size: 20px;
+    }
+ 
+}
+
+.main {
+    padding-top: 45px;
+    padding-bottom: 45px;
+}
+
 .product {
     padding: 5px;
 

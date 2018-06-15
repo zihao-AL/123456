@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录页面</title>
+    <link rel="icon" href="./images/favicon.ico">
+    <link rel="stylesheet" href="./lib/mui/css/mui.css">
+    <link rel="stylesheet" href="./lib/fontAwesome/css/font-awesome.css">
+    <link rel="stylesheet/less" href="./less/login.less">
+    <script src="./lib/less/less.js"></script>
+</head>
+<body>
+
+    <header class="header">
+        <a href="category.html" class="fa fa-arrow-left"></a>
+        <h4>登录中心</h4>
+    </header>
+
+    <div id="main" class="main">
+        <form class="mui-input-group">
+            <div class="mui-input-row">
+                
+                <input type="text" class="mui-input-clear username" placeholder="请输入用户名">
+            </div>
+            <div class="mui-input-row">
+                
+                <input type="password" class="mui-input-password password" placeholder="请输入密码">
+            </div>
+            <div class="mui-button-row">
+                <button type="button" class="mui-btn mui-btn-primary btn-login">登录</button>
+                
+            </div>
+        </form>
+        <a href="register.html" class="btn-register">免费注册</a>
+    </div>
+
+
+   <!-- 底部 -->
+   <footer class="footer">
+    <div class="mui-row">
+        <div class="mui-col-xs-3">
+            <a href="#" class="fa fa-home active">
+                <span>首页</span>
+            </a>
+        </div>
+        <div class="mui-col-xs-3">
+            <a href="./category.html" class="fa fa-bars">
+                <span>分类</span>
+            </a>
+        </div>
+        <div class="mui-col-xs-3">
+            <a href="cart.html" class="fa fa-shopping-cart">
+                <span>购物车</span>
+            </a>
+        </div>
+        <div class="mui-col-xs-3">
+            <a href="user.html" class="fa fa-user">
+                <span>会员中心</span>
+            </a>
+        </div>
+    </div>
+    </footer>
+
+    <script src="./lib/mui/js/mui.js"></script>
+    <script src="./lib/zepto/zepto.min.js"></script>
+    <script src="./lib/artTemplate/template.js"></script>
+    <script src="./js/login.js"></script>
+</body>
+</html>

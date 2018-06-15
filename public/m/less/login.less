@@ -1,0 +1,33 @@
+@import "bass.less";
+
+#main {
+    position: relative;
+    
+    form {
+        padding: 10px;
+        
+
+        &::after {
+            background-color: #fff;
+        }
+        >div {
+            margin-bottom: 10px;
+        }
+        .username,.password {
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .btn-login {
+            margin-top: 20px;
+            width: 100%;
+        }
+    }
+
+    .btn-register {
+        position: absolute;
+        bottom: 20px;
+        right: 10px;
+        font-size: 12px;
+    }
+}

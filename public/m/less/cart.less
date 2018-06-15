@@ -1,0 +1,79 @@
+@import "bass.less";
+
+#main {
+    padding-bottom: 95px;
+
+    .mui-media {
+
+        .product-img {
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+        }
+
+        .check {
+            float: left;
+        }
+
+        .price {
+
+            .new-price {
+                color: #f10215;
+                font-size: 14px;
+            }
+            .old-price {
+                color: #ccc;
+                font-size: 12px;
+                margin-left: 6px;
+            }
+        }
+
+        .size {
+            .mui-pull-left {
+                color: #999;
+                font-size: 12px;
+            }
+            .mui-pull-right {
+                color: #999;
+                font-size: 12px;
+                margin-right: 20px;
+            }
+        }
+    }
+
+    .total {
+        position: fixed;
+        bottom: 40px;
+        left: 0px;
+        z-index: 888;
+        width: 100%;
+        font-size: 14px;
+        border-top: 1px solid #ccc;
+        padding: 5px;
+        background-color: #fff;
+        .mui-pull-left {
+            line-height: 40px;
+            color: red;
+            font-weight: 600;
+        }
+    }
+
+}
+
+.product-size {
+
+    span {
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        border: 1px solid #999;
+        line-height: 25px;
+        text-align: center;
+        margin: 5px 3px;
+        font-size: 14px;
+
+        &.active {
+            background-color: tomato;
+        }
+    }
+}

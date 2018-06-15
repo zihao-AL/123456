@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>后台首页</title>
+	<link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="./lib/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet/less" href="./less/categoryFirst.less">
+	<script src="./lib/less/less.js"></script>
+</head>
+<body>
+    <main class="main">
+        <div class="row">
+            <div class="aside col-sm-2 col-lg-2">
+                <div class="user-img">
+                    <img src="./images/my_logo.jpg" class="my-logo" alt="">
+                    <h4>张学友</h4>
+                </div>
+                <div class="classify">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="index.html">用户管理</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#collapseOne" data-toggle="collapse">分类管理</a>
+                            <ul class="list-group classify2 panel-collapse collapse in" id="collapseOne">
+                                <li class="list-group-item">
+                                    <a href="categoryFirst.html" class="active">一级分类</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="categorySecond.html">二级分类</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">商品管理</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content col-sm-10 col-lg-10">
+                <div class="header clearfix">
+                    <div class="pull-left">
+                        <a href="#">
+                            <i class="fa fa-navicon"></i>
+                        </a>
+                    </div>
+                    <div class="pull-right">
+                        <a href="#"><i class="fa fa-sign-out"></i>退出</a>
+                    </div>
+                </div>
+                <div class="profile">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">添加分类</button>
+                    <div class="paging">
+
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>分类的编号</th>
+                                <th>分类名称</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+        <!-- 模态框 -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">添加分类</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" placeholder="请输入分类的名称" class="form-control categoryName">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary btn-add" data-dismiss="modal">添加</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+    
+    
+
+    <script type="text/html" id="queryCategoryTmp">
+        {{each rows as value i}}
+            <tr>
+                <td scope="row"><input type="checkbox"></td>
+                <td>{{value.id}}</td>
+                <td>{{value.categoryName}}</td>
+            </tr>
+        {{/each}}
+    </script>
+
+    <script type="text/html" id="pagingTmp">
+
+            <div class="left">
+                显示第 {{page}} 页的 {{pageTotal}} 条记录，总共 {{total}} 条记录
+            </div>
+            <nav class="right">
+                <ul class="pagination">
+                    <li>
+                        <a href="#" class="prev" data-page="{{page > 1 ? --page : 1}}">
+                            <span>&laquo;</span>
+                        </a>
+                    </li>
+                    {{each pageCount as value i}}
+                        <li>
+                            <a href="#" class="{{page == value ? 'active' : ''}}" data-page="{{value}}">{{value}}</a>
+                        </li>
+                    {{/each}}
+                    <li>
+                        <a href="#" class="next"  data-page="{{page > pageCount.length ? pageCount.length : ++page}}">
+                            <span>&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        
+    </script>
+
+	<script src="./lib/jquery/jquery.js"></script>
+	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="./lib/artTemplate/template.js"></script>
+	<script src="./js/categoryFirst.js"></script>
+</body>
+</html>
